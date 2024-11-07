@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Transaction;
+use App\Models\User;
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionsController extends Controller
 {
@@ -12,7 +16,9 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Transactions/Index');
+        $transactions = Transaction::all();
+        $users = User::all();
+        return Inertia::render('Transactions/Index', ['transactions' => $transactions, 'users' => $users]);
     }
 
     /**
@@ -20,7 +26,8 @@ class TransactionsController extends Controller
      */
     public function create()
     {
-        //
+        $products = Product::all();
+        return Inertia::render('Transactions/Create', ['products' => $products]);
     }
 
     /**
@@ -28,7 +35,22 @@ class TransactionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = Transaction::create([
+            'user_id' => Auth::user()->id,
+            'transaction_date' => $request->transaction_date,
+            'transaction_type' => $request->transaction_type,
+            'total' => $request->total
+        ]);
+
+        foreach ($request->products as $product) {
+            $transaction->transactionDetail()->create([
+                'product_id' => $product['id'],
+                'quantity' => $product['quantity'],
+                'price' => $product['price'],
+            ]);
+        }
+
+        return redirect()->route('transactions.index');
     }
 
     /**
@@ -36,7 +58,16 @@ class TransactionsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $transaction = Transaction::with('transactionDetail.product')->find($id);
+
+        if (!$transaction) {
+            return redirect()->back()->withErrors('Transaction not found.');
+        }
+
+        return Inertia::render('Transactions/Show', [
+            'transaction' => $transaction,
+            'transactionDetails' => $transaction->transactionDetail,
+        ]);
     }
 
     /**

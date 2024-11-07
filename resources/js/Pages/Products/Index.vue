@@ -19,7 +19,9 @@
             <tbody>
                 <tr  v-for="(product, index) in products" :key="product.id">
                     <td class="border px-4 py-2">{{ index + 1 }}</td>
-                    <td class="border px-4 py-2 flex items-center justify-center"><img :src="`/storage/${product.image}`" :alt="product.name" class="w-16 h-16 object-cover" /></td>
+                    <td class="border px-4 py-2 flex items-center justify-center">
+                        <img :src="`/storage/${product.image}`" :alt="product.name" class="w-16 h-16 object-cover" />
+                    </td>
                     <td class="border px-4 py-2">{{ product.name }}</td>
                     <td class="border px-4 py-2">{{ getCategoryName(product.category_id) }}</td>
                     <td class="border px-4 py-2">{{ product.stock }}</td>

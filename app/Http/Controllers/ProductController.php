@@ -75,20 +75,9 @@ class ProductController extends Controller
     //     return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     // }
 
-    public function update(Request $request, Product $product)
+    public function update(Product $product, Request $request )
 {
-    // Validasi input
-    // $request->validate([
-    //     'name' => 'required',
-    //     'price' => 'required|numeric',
-    //     'category_id' => 'required',
-    //     'stock' => 'required|integer',
-    //     'image' => 'nullable|image',  // Image tidak lagi required, hanya jika ada
-    // ]);
 
-    // dd($request->all());
-
-    // Check jika ada file image yang di-upload
     if ($request->hasFile('image')) {
         // Simpan file image ke dalam folder 'images' di storage 'public'
         $imagePath = $request->file('image')->store('images', 'public');
@@ -96,22 +85,15 @@ class ProductController extends Controller
         $product->image = $imagePath;
     }
 
-    // $product = Product::findOrFail($id);
+
     $product->update([
         'name' => $request->name,
         'price' => $request->price,
         'category_id' => $request->category_id,
-        'stock' => $request->stock
+        'stock' => $request->stock,
         // 'image' => $request->image
     ]);
 
-    // Update data lain (kecuali image jika tidak di-upload)
-    // $product->fill($request->only('name', 'stock', 'category_id', 'price'));
-    
-    // Simpan perubahan ke database
-    // $product->save();
-
-    // Redirect kembali ke halaman index produk dengan pesan sukses
     return redirect()->route('products.index')->with('success', 'Product updated successfully.');
 }
 

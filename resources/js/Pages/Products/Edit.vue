@@ -19,7 +19,7 @@
                     </select>
                     <span v-if="errors.category_id" class="text-red-500">{{ errors.category_id[0] }}</span>
                 </div>
-                    
+
                 <!-- Stock -->
                 <div class="mb-4">
                     <label class="block" for="stock">Stock</label>
@@ -33,7 +33,7 @@
                 </div>
                 <div class="mb-4">
                     <label class="block" for="image">Image</label>
-                    <input @change="handleFileUpload" type="file" id="image" class="border px-2 py-1 w-full" />
+                    <input @input="form.image = $event.target.files[0]" type="file" id="image" class="border px-2 py-1 w-full" />
                     <span v-if="errors.image" class="text-red-500">{{ errors.image[0] }}</span>
                 </div>
                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
@@ -93,7 +93,7 @@ export default {
             console.log(formData);
             // console.log(this.errors);
             try {
-                
+
                 await Inertia.put(`/products/${this.product.id}`, formData);
             } catch (error) {
                 if (error.response && error.response.status === 422) {
@@ -120,7 +120,7 @@ const form = useForm({
     stock: props.product.stock,
     category_id: props.product.category_id,
     price: props.product.price,
-    image: null,
+    image: "",
 });
 
 const errors = ref({});
@@ -133,6 +133,8 @@ const getCategoryName = (categoryId) => {
     const category = props.categories.find((category) => category.id === categoryId)?.name;
     return category ? category : 'Unknown';
 };
+
+
 
 // const submit = () => {
 //     form.put(`/products/${props.product.id}`);
