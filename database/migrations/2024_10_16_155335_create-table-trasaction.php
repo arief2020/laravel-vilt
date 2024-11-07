@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->date('transaction_date');
-            $table->enum ('transaction_type', ['cash_in', 'cash_out']);
+            $table->enum('transaction_type', ['cash_in', 'cash_out']);
             $table->decimal('total', 10, 2);
             $table->timestamps();
 

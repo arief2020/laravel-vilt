@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { Bar } from "vue-chartjs";
+import { Bar } from 'vue-chartjs'
 import {
     Chart as ChartJS,
     Title,
@@ -12,17 +12,9 @@ import {
     BarElement,
     CategoryScale,
     LinearScale,
-} from "chart.js";
-import { data } from "autoprefixer";
+} from 'chart.js'
 
-ChartJS.register(
-    Title,
-    Tooltip,
-    Legend,
-    BarElement,
-    CategoryScale,
-    LinearScale
-);
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 export default {
     props: {
@@ -35,7 +27,7 @@ export default {
             required: true,
         },
     },
-    name: "BarChart",
+    name: 'BarChart',
     components: { Bar },
     data() {
         return {
@@ -59,11 +51,11 @@ export default {
                         font: {
                             size: 18,
                         },
-                        position: "top", // Posisi judul
+                        position: 'top', // Posisi judul
                     },
                 },
             },
-        };
+        }
     },
-};
+}
 </script>

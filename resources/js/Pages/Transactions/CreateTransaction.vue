@@ -57,7 +57,9 @@
                             :key="product.id"
                         >
                             <td class="border px-4 py-2">{{ index + 1 }}</td>
-                            <td class="border px-4 py-2">{{ findProduct(product.id).name }}</td>
+                            <td class="border px-4 py-2">
+                                {{ findProduct(product.id).name }}
+                            </td>
                             <td class="border px-4 py-2">
                                 {{ product.quantity }}
                             </td>
@@ -143,15 +145,15 @@
 </template>
 
 <script>
-import DashboardLayout from "../../Layouts/DashboardLayout.vue";
-import { Inertia } from "@inertiajs/inertia";
+import { Inertia } from '@inertiajs/inertia'
+import DashboardLayout from '../../Layouts/DashboardLayout.vue'
 
 export default {
     data() {
         return {
             form: {
-                transaction_date: "",
-                transaction_type: "", // Tambahkan category_id di form
+                transaction_date: '',
+                transaction_type: '', // Tambahkan category_id di form
                 total: 0,
                 products: [],
             },
@@ -167,27 +169,27 @@ export default {
             exampleProducts: [
                 {
                     id: 1,
-                    name: "Product 1",
+                    name: 'Product 1',
                     quantity: 1,
                     price: 10000,
                     total: 10000,
                 },
                 {
                     id: 2,
-                    name: "Product 2",
+                    name: 'Product 2',
                     quantity: 2,
                     price: 20000,
                     total: 40000,
                 },
                 {
                     id: 3,
-                    name: "Product 3",
+                    name: 'Product 3',
                     quantity: 3,
                     price: 30000,
                     total: 90000,
                 },
             ],
-        };
+        }
     },
 
     props: {
@@ -200,47 +202,49 @@ export default {
 
     methods: {
         findProduct(id) {
-            const product = this.products.find((product) => product.id === id);
-            return product ? product : "";
+            const product = this.products.find(
+                (productParams) => productParams.id === id
+            )
+            return product || ''
         },
 
         addDataProduct() {
-            const productPrice = this.findProduct(
-                this.dataFormProduct.id
-            ).price
+            const productPrice = this.findProduct(this.dataFormProduct.id).price
 
-            this.dataFormProduct.price = productPrice * this.dataFormProduct.quantity
+            this.dataFormProduct.price =
+                productPrice * this.dataFormProduct.quantity
 
-            this.dataFormProducts.push(this.dataFormProduct);
+            this.dataFormProducts.push(this.dataFormProduct)
             this.dataFormProduct = {
                 id: 0,
                 quantity: 0,
                 price: 0,
-            };
+            }
 
-            this.openFormProduct = false;
-            console.log(this.dataFormProducts);
+            this.openFormProduct = false
+            // console.log(this.dataFormProducts)
         },
 
         handleFileUpload(event) {
-            this.form.image = event.target.files[0];
+            ;[this.form.image] = event.target.files
         },
 
         submit() {
             this.form.total = this.dataFormProducts.reduce(
-                (total, product) => total + product.price, 0
+                (total, product) => total + product.price,
+                0
             )
             this.form.products = this.dataFormProducts
-            console.log(this.form);
+            // console.log(this.form)
 
             try {
-                Inertia.post("/transactions", this.form);
+                Inertia.post('/transactions', this.form)
             } catch (error) {
                 if (error.response && error.response.status === 422) {
-                    this.errors = error.response.data.errors;
+                    this.errors = error.response.data.errors
                 }
             }
         },
     },
-};
+}
 </script>

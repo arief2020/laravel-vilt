@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
-use App\Models\Product;
-use App\Models\Category;
-
 
 class ProductController extends Controller
 {
@@ -14,13 +13,15 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $categories = Category::all();
-        return Inertia::render('Products/Index', ['products' => $products, 'categories' => $categories]);
+
+        return Inertia::render('Products/IndexProduct', ['products' => $products, 'categories' => $categories]);
     }
 
     public function create()
     {
         $categories = Category::all();
-        return Inertia::render('Products/Create', ['categories' => $categories]);
+
+        return Inertia::render('Products/CreateProduct', ['categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -52,7 +53,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return Inertia::render('Products/Edit', ['product' => $product, 'categories' => $categories]);
+
+        return Inertia::render('Products/EditProduct', ['product' => $product, 'categories' => $categories]);
     }
 
     // public function update(Request $request, Product $product)
@@ -75,31 +77,31 @@ class ProductController extends Controller
     //     return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     // }
 
-    public function update(Product $product, Request $request )
-{
+    public function update(Product $product, Request $request)
+    {
 
-    if ($request->hasFile('image')) {
-        // Simpan file image ke dalam folder 'images' di storage 'public'
-        $imagePath = $request->file('image')->store('images', 'public');
-        // Update field image pada produk
-        $product->image = $imagePath;
+        if ($request->hasFile('image')) {
+            // Simpan file image ke dalam folder 'images' di storage 'public'
+            $imagePath = $request->file('image')->store('images', 'public');
+            // Update field image pada produk
+            $product->image = $imagePath;
+        }
+
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'category_id' => $request->category_id,
+            'stock' => $request->stock,
+            // 'image' => $request->image
+        ]);
+
+        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
-
-
-    $product->update([
-        'name' => $request->name,
-        'price' => $request->price,
-        'category_id' => $request->category_id,
-        'stock' => $request->stock,
-        // 'image' => $request->image
-    ]);
-
-    return redirect()->route('products.index')->with('success', 'Product updated successfully.');
-}
 
     public function destroy(Product $product)
     {
         $product->delete();
+
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
     }
 }

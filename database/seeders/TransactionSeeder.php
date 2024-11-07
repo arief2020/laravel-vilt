@@ -2,10 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class TransactionSeeder extends Seeder
 {
@@ -14,7 +13,7 @@ class TransactionSeeder extends Seeder
      */
     public function run(): void
     {
-         DB::table('transactions')->insert([
+        DB::table('transactions')->insert([
             [
                 'user_id' => 1,
                 'transaction_date' => Carbon::now()->subDays(5), // 5 days ago

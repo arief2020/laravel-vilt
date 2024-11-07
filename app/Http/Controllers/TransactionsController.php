@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Inertia\Inertia;
+use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
-use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class TransactionsController extends Controller
 {
@@ -18,7 +18,8 @@ class TransactionsController extends Controller
     {
         $transactions = Transaction::all();
         $users = User::all();
-        return Inertia::render('Transactions/Index', ['transactions' => $transactions, 'users' => $users]);
+
+        return Inertia::render('Transactions/IndexTransaction', ['transactions' => $transactions, 'users' => $users]);
     }
 
     /**
@@ -27,7 +28,8 @@ class TransactionsController extends Controller
     public function create()
     {
         $products = Product::all();
-        return Inertia::render('Transactions/Create', ['products' => $products]);
+
+        return Inertia::render('Transactions/CreateTransaction', ['products' => $products]);
     }
 
     /**
@@ -39,7 +41,7 @@ class TransactionsController extends Controller
             'user_id' => Auth::user()->id,
             'transaction_date' => $request->transaction_date,
             'transaction_type' => $request->transaction_type,
-            'total' => $request->total
+            'total' => $request->total,
         ]);
 
         foreach ($request->products as $product) {
@@ -60,11 +62,11 @@ class TransactionsController extends Controller
     {
         $transaction = Transaction::with('transactionDetail.product')->find($id);
 
-        if (!$transaction) {
+        if (! $transaction) {
             return redirect()->back()->withErrors('Transaction not found.');
         }
 
-        return Inertia::render('Transactions/Show', [
+        return Inertia::render('Transactions/ShowTransaction', [
             'transaction' => $transaction,
             'transactionDetails' => $transaction->transactionDetail,
         ]);

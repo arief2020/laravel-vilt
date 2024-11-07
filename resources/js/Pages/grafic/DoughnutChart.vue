@@ -3,13 +3,10 @@
 </template>
 
 <script>
-import { Doughnut } from "vue-chartjs";
-import {
-    Chart as ChartJS, ArcElement, Tooltip, Legend, Title
-} from "chart.js";
-ChartJS.register(
-    ArcElement, Tooltip, Legend, Title
-);
+import { Doughnut } from 'vue-chartjs'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js'
+
+ChartJS.register(ArcElement, Tooltip, Legend, Title)
 
 export default {
     props: {
@@ -22,7 +19,7 @@ export default {
             required: true,
         },
     },
-    name: "BarChart",
+    name: 'BarChart',
     components: { Doughnut },
     data() {
         return {
@@ -35,13 +32,13 @@ export default {
                         display: true,
                         text: 'Product Stock', // Judul chart
                         font: {
-                            size: 18
+                            size: 18,
                         },
-                        position: 'top' // Posisi judul
-                    }
-                }
+                        position: 'top', // Posisi judul
+                    },
+                },
             },
-        };
+        }
     },
-};
+}
 </script>

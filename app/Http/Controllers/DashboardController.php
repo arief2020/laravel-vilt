@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Inertia\Inertia;
-
-use App\Models\Transaction;
 use App\Models\Product;
+use App\Models\Transaction;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
@@ -18,6 +16,6 @@ class DashboardController extends Controller
 
         $products = Product::all();
 
-        return Inertia::render('Dashboard', ['totalTransactions' => $totalTransactions, 'cashIn' => $cashIn, 'cashOut' => $cashOut, 'products' => $products]);
+        return Inertia::render('DashboardPage', ['totalTransactions' => $totalTransactions, 'cashIn' => $cashIn, 'cashOut' => $cashOut, 'products' => $products]);
     }
 }
