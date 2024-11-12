@@ -3,6 +3,7 @@
         <div>
             <h1 class="text-2xl font-bold mb-4">Edit Product</h1>
             <form @submit.prevent="form.put(`/products/${props.product.id}`)">
+            <!-- <form @submit.prevent="submit"> -->
                 <div class="mb-4">
                     <label class="block" for="name">Product Name</label>
                     <input
@@ -68,11 +69,17 @@
                 <div class="mb-4">
                     <label class="block" for="image">Image</label>
                     <input
-                        @input="form.image = $event.target.files[0]"
+                        @change="handleFileUpload"
                         type="file"
                         id="image"
                         class="border px-2 py-1 w-full"
                     />
+                    <!-- <input
+                        @input="form.image = $event.target.files[0]"
+                        type="file"
+                        id="image"
+                        class="border px-2 py-1 w-full"
+                    /> -->
                     <span v-if="errors.image" class="text-red-500">{{
                         errors.image[0]
                     }}</span>
@@ -103,8 +110,79 @@ const form = useForm({
     stock: props.product.stock,
     category_id: props.product.category_id,
     price: props.product.price,
-    image: '',
+    image: props.product.image,
 })
 
 const errors = ref({})
+
+// const submit = () => {
+//     // form.put(`/products/${props.product.id}`, {
+//     //     forceFormData: true,
+//     // })
+
+//     form.put(`/products/${props.product.id}`, {
+//         forceFormData: true,
+//     })
+// }
 </script>
+
+<!-- <script>
+import { Inertia } from '@inertiajs/inertia'
+import DashboardLayout from '../../Layouts/DashboardLayout.vue'
+
+export default {
+    data() {
+        return {
+            form: {
+                name: '',
+                category_id: '', // Tambahkan category_id di form
+                price: '',
+                stock: '',
+                image: null,
+            },
+            // categories: [],  // Untuk menyimpan data categories
+            errors: {},
+        }
+    },
+    props: {
+        categories: Array,
+        product: Object,
+    },
+    components: {
+        DashboardLayout,
+    },
+
+    mounted() {
+        this.form.name = this.product.name
+        this.form.category_id = this.product.category_id
+        this.form.price = this.product.price
+        this.form.stock = this.product.stock
+        this.form.image = this.product.image
+    },
+
+    methods: {
+        handleFileUpload(event) {
+            ;[this.form.image] = event.target.files
+        },
+        async submit() {
+            this.errors = {}
+            const formData = new FormData()
+            formData.append('name', this.form.name)
+            formData.append('category_id', this.form.category_id) // Tambahkan category_id
+            formData.append('stock', this.form.stock)
+            formData.append('price', this.form.price)
+            if (this.form.image) {
+                formData.append('image', this.form.image)
+            }
+
+            try {
+                await Inertia.put(`/products/${this.product.id}`, formData) // Sesuaikan URL sesuai rute API-mu
+            } catch (error) {
+                if (error.response && error.response.status === 422) {
+                    this.errors = error.response.data.errors
+                }
+            }
+        },
+    },
+}
+</script> -->

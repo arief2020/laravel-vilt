@@ -79,23 +79,24 @@ class ProductController extends Controller
 
     public function update(Product $product, Request $request)
     {
+        dd($request->all());
 
-        if ($request->hasFile('image')) {
-            // Simpan file image ke dalam folder 'images' di storage 'public'
-            $imagePath = $request->file('image')->store('images', 'public');
-            // Update field image pada produk
-            $product->image = $imagePath;
-        }
+        // if ($request->hasFile('image')) {
+        //     // Simpan file image ke dalam folder 'images' di storage 'public'
+        //     $imagePath = $request->file('image')->store('images', 'public');
+        //     // Update field image pada produk
+        //     $product->image = $imagePath;
+        // }
 
-        $product->update([
-            'name' => $request->name,
-            'price' => $request->price,
-            'category_id' => $request->category_id,
-            'stock' => $request->stock,
-            // 'image' => $request->image
-        ]);
+        // $product->update([
+        //     'name' => $request->name,
+        //     'price' => $request->price,
+        //     'category_id' => $request->category_id,
+        //     'stock' => $request->stock,
+        //     // 'image' => $request->image
+        // ]);
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        // return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
     public function destroy(Product $product)
