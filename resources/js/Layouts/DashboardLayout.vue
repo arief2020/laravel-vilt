@@ -40,8 +40,9 @@
                         </a>
                     </li>
                     <li>
-                        <form method="POST" action="/logout">
+                        <form method="GET" action="/logout">
                             <button
+                                type="submit"
                                 class="w-full text-left px-6 py-2 text-gray-700 hover:bg-gray-200"
                             >
                                 Logout

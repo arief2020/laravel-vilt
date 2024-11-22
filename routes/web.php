@@ -34,6 +34,8 @@ Route::get('/login', function () {
 
 Route::post('/login', [LoginController::class, 'login']);
 
+Route::get('/logout', [LoginController::class, 'logout']);
+
 Route::get('/register', function () {
     return Inertia::render('RegisterPage');
 })->name('register');
