@@ -50,7 +50,11 @@ Route::post('/register', [RegisterController::class, 'register']);
 //     return Inertia::render('Transactions/Index');
 // })->middleware(['auth'])->name('transactions');
 
+Route::put('/product/{id}', [ProductController::class, 'changes'])->middleware(['auth']);
+// Route::get('/products/:id/edit', [ProductController::class, 'edit'])->middleware(['auth']);
 Route::resource('products', ProductController::class)->middleware(['auth']);
+// Route::get('/edit-product', [ProductController::class, 'editProduct']);
+
 Route::resource('transactions', TransactionsController::class)->middleware(['auth']);
 
 Route::get('/reports', [ReportController::class, 'index'])->middleware(['auth'])->name('report');

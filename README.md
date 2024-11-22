@@ -1,66 +1,213 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# System Management Inventory
 
-## About Laravel
+A personal portfolio project built to showcase my skills in developing a comprehensive inventory management system. This system focuses on managing products, tracking stock movements (in/out transactions), generating PDF reports, and visualizing data trends using interactive charts. It demonstrates my ability to create both frontend and backend components that interact seamlessly to provide a user-friendly experience.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Table of Contents
+1. [Introduction](#introduction) 
+2. [API Documentation](#api-documentation) 
+3.  [Deployment](#deployment) 
+4. [Running Locally](#running-locally) 
+5.  [Feedback](#feedback) 
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Key Features:
+*  **Product Management**: CRUD operations for adding, updating, deleting, and viewing product details.
+* **Transaction Management**: CRUD for tracking stock-in and stock-out transactions, keeping an accurate record of inventory movements.
+* **PDF Report Generation**: Automatic PDF generation for transaction summaries and inventory reports, useful for offline record-keeping or sharing.
+* **Data Visualization**: Interactive stock charts using Chart.js to visualize trends in product inventory and transaction data.
+* **Real-Time Stock Tracking**: Automatically update stock levels based on incoming or outgoing transactions.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tech Stack:
+* **Frontend**: Vue.js (with Inertia.js for smooth navigation and SPA-like experience).
+* **Backend**: Laravel (RESTful API for product and transaction management, PDF generation).
+* **Styling**: Tailwind CSS (clean, responsive design).
+* **Data Visualization**: Chart.js (for displaying stock and transaction data visually).
+* **Database**: MySQL (storing product data, transactions, and inventory levels).
 
-## Learning Laravel
+# bukan
+## API Documentation
+A detailed API documentation, including example requests and responses, can be found in the following link:  
+[API Documentation Link](https://documenter.getpostman.com/view/12326491/2sAXjM3ra9)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You can visit this link to view the full documentation and test the API using Postman.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Available Endpoints
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1.  **Auth:**
+    -   `POST /api/login` – Authenticate user and generate token.
+	   -   `POST /api/register` – Register a new user.
+	   - `POST /api/logout` – Logout the user
+3.  **User Management:**
+    
+    -   `GET /api/users` – Retrieve list of all users.
+    -   `GET /api/users/{id}` – Retrieve details of a specific user.
+    -   `PUT /api/users/{id}` – Update a user’s details.
+    -   `DELETE /api/users/{id}` – Delete a user.
+4.  **Products Management:**
+    
+    -   `GET /api/products` – Retrieve list of all items.
+    -   `POST /api/products` – Create a new item.
+    -   `GET /api/products/{id}` – Retrieve details of a specific item.
+    -   `PUT /api/products/{id}` – Update an item’s details.
+    -   `DELETE /api/products/{id}` – Delete an item.
+5.  **Mutation Management:**
+    
+    -   `GET /api/mutations` – Retrieve all mutations.
+    -   `POST /api/mutations` – Create a new mutation.
+    -   `GET /api/mutations/{id}` – Retrieve details of a specific mutation.
+     -   `PUT /api/mutations/{id}` – Update an mutation details.
+     -    `DELETE /api/mutations/{id}` – Delete an mutations .
+    -   `GET /api/items/{id}/mutations` – Get mutation history for a specific item.
+    -   `GET /api/users/{id}/mutations` – Get mutation history for a specific user.
 
-## Laravel Sponsors
+## Deployment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+The project is currently deployed and available online. You can access the live application at :
 
-### Premium Partners
+```bash
+https://api.id-grow.msyaifullahalarief.my.id
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Running Locally
 
-## Contributing
+To run this project locally on your machine, follow these steps:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+ **1. Clone the Repository**
 
-## Code of Conduct
+Start by cloning the repository to your local machine:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+git clone https://github.com/arief2020/Warehouse-ID-Grow.git
+```
 
-## Security Vulnerabilities
+ **2. Navigate into the Project Directory**
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Move into the project directory:
 
-## License
+```bash
+cd Warehouse-ID-Grow
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**3. Copy .env**
+
+Copy the example environment file:
+
+```bash
+cp .env.example .env
+```
+**4.  Run Composer**
+
+Install the project dependencies using Composer:
+
+```bash
+composer install
+```
+
+**5. Setting database**
+
+Open the `.env` file and update the database configuration:
+```env
+...
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=dbidgrowdev
+DB_USERNAME=root
+DB_PASSWORD=
+...
+```
+**6. Generate API Key**
+
+Generate api key
+```bash
+php artisan key:generate
+```
+**7. Run Migration**
+
+Run the database migrations:
+```bash
+php artisan migrate
+```
+**8. Run App**
+
+Start the Laravel development server:
+```bash
+php artisan serve
+```
+
+### Running with Docker
+
+To run this project with docker, follow these steps:
+
+ **1. Clone the Repository**
+
+Start by cloning the repository to your local machine:
+
+```bash
+git clone https://github.com/arief2020/Warehouse-ID-Grow.git
+```
+
+ **2. Navigate into the Project Directory**
+
+Move into the project directory:
+
+```bash
+cd Warehouse-ID-Grow
+```
+
+**3. Copy .env**
+
+Install the project dependencies using npm :
+
+```bash
+cp .env.example .env
+```
+**4.  Run Composer**
+
+Install the project dependencies using Composer:
+
+```bash
+composer install
+```
+
+**5. Setting database**
+
+Edit the `.env` file for Docker's database connection (ensure the `DB_HOST` matches the service name in your `docker-compose.yml`):
+```env
+...
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=laraveluser
+DB_PASSWORD=password
+...
+```
+**6. Generate API Key**
+
+Generate the application key:
+```bash
+php artisan key:generate
+```
+**7. Run App with Docker**
+
+Build and start the app using Docker Compose:
+```bash
+docker-compose up -d --build
+```
+**8. Run Migration**
+Open an interactive shell in the Laravel container:
+```bash
+docker exec -it laravel_id_grow sh
+```
+Run the migrations:
+```bash
+php artisan migrate
+```
+
+## Tech Stack
+
+**Server:** Laravel
+
+**Database:** MySQL
+

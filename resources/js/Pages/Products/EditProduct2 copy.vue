@@ -96,8 +96,8 @@
 </template>
 
 <script setup>
+import { useForm } from '@inertiajs/inertia-vue3'
 import { ref } from 'vue'
-import { router, useForm } from '@inertiajs/vue3'
 import DashboardLayout from '../../Layouts/DashboardLayout.vue'
 
 const props = defineProps({
@@ -106,6 +106,7 @@ const props = defineProps({
 })
 
 const form = useForm({
+    _method: 'put',
     name: props.product.name,
     stock: props.product.stock,
     category_id: props.product.category_id,
@@ -114,15 +115,14 @@ const form = useForm({
 })
 
 const submit = () => {
-    router.post(`/product/${props.product.id}`, {
+    form.post(`/product/${props.product.id}`, {
         _method: 'put',
-        image: form.image,
         name: form.name,
         stock: form.stock,
         category_id: form.category_id,
         price: form.price,
+        image: form.image,
     })
 }
-
 const errors = ref({})
 </script>

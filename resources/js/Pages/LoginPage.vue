@@ -53,8 +53,8 @@
 </template>
 
 <script setup>
+import { router } from '@inertiajs/vue3'
 import { reactive } from 'vue'
-import { Inertia } from '@inertiajs/inertia'
 
 const form = reactive({
     email: '',
@@ -63,6 +63,6 @@ const form = reactive({
 
 const login = () => {
     // Submit form login ke server
-    Inertia.post('/login', form)
+    router.post('/login', form)
 }
 </script>

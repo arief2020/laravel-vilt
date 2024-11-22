@@ -26,6 +26,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required',
             'price' => 'required',
@@ -77,26 +78,10 @@ class ProductController extends Controller
     //     return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     // }
 
-    public function update(Product $product, Request $request)
+    public function update(Request $request, Product $product)
     {
         dd($request->all());
 
-        // if ($request->hasFile('image')) {
-        //     // Simpan file image ke dalam folder 'images' di storage 'public'
-        //     $imagePath = $request->file('image')->store('images', 'public');
-        //     // Update field image pada produk
-        //     $product->image = $imagePath;
-        // }
-
-        // $product->update([
-        //     'name' => $request->name,
-        //     'price' => $request->price,
-        //     'category_id' => $request->category_id,
-        //     'stock' => $request->stock,
-        //     // 'image' => $request->image
-        // ]);
-
-        // return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
     public function destroy(Product $product)
@@ -104,5 +89,32 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+    }
+
+    public function changes(Request $request, string $id)
+    {
+
+        try {
+            $product = Product::findOrFail($id);
+            $imagePath = $product->image; // Gambar lama
+            if ($request->hasFile('image')) {
+                if ($imagePath && \Storage::exists("public/$imagePath")) {
+                    \Storage::delete("public/$imagePath");
+                }
+
+                $imagePath = $request->file('image')->store('images', 'public');
+            }
+            $product->update([
+                'name' => $request->name,
+                'price' => $request->price,
+                'category_id' => $request->category_id,
+                'stock' => $request->stock,
+                'image' => $imagePath,
+            ]);
+
+            return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Update failed: '.$e->getMessage());
+        }
     }
 }

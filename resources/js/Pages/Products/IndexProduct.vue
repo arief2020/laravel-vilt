@@ -97,7 +97,7 @@ export default {
 </script> -->
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
+import { Link } from '@inertiajs/vue3'
 import { Inertia } from '@inertiajs/inertia'
 import DashboardLayout from '../../Layouts/DashboardLayout.vue'
 
@@ -114,8 +114,8 @@ const getCategoryName = (categoryId) => {
 }
 
 const deleteProduct = async (id) => {
-    if (confirm('Are you sure you want to delete this product?')) {
-        Inertia.delete(`/products/${id}`)
-    }
+    // if (confirm('Are you sure you want to delete this product?')) {
+    await Inertia.delete(`/products/${id}`)
+    // }
 }
 </script>

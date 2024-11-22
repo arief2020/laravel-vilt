@@ -23,14 +23,18 @@ class ReportController extends Controller
         // // Ambil data transaksi
         $transactions = Transaction::with('user')->get();
 
-        // // Generate view sebagai PDF
-        $pdf = Pdf::loadView('transactions.report', compact('transactions'))->setOptions(['defaultFont' => 'sans-serif']);
-        // return response()->json([
-        //     'message' => 'PDF generated successfully',
-        //     'data' => $transactions,
-        // ]);
+        // // // Generate view sebagai PDF
+        $pdf = PDF::loadView('transactions.report', ['transactions' => $transactions]);
+        // // return response()->json([
+        // //     'message' => 'PDF generated successfully',
+        // //     'data' => $transactions,
+        // // ]);
 
-        // // Tampilkan PDF di browser untuk diunduh
-        return $pdf->download('transactions_report.pdf');
+        // // // Tampilkan PDF di browser untuk diunduh
+        // return $pdf->download('transactions_report.pdf');
+
+        // $data = ['title' => 'domPDF in Laravel 10'];
+        // $pdf = PDF::loadView('pdf.document', $data);
+        return $pdf->download('document.pdf');
     }
 }
