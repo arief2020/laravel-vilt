@@ -4,11 +4,15 @@
 A personal portfolio project built to showcase my skills in developing a comprehensive inventory management system. This system focuses on managing products, tracking stock movements (in/out transactions), generating PDF reports, and visualizing data trends using interactive charts. It demonstrates my ability to create both frontend and backend components that interact seamlessly to provide a user-friendly experience.
 
 ## Table of Contents
-1. [Introduction](#introduction) 
-2. [API Documentation](#api-documentation) 
-3.  [Deployment](#deployment) 
-4. [Running Locally](#running-locally) 
-5.  [Feedback](#feedback) 
+- [System Management Inventory](#system-management-inventory)
+  - [Table of Contents](#table-of-contents)
+  - [Key Features:](#key-features)
+  - [Tech Stack:](#tech-stack)
+    - [Running Locally](#running-locally)
+  - [Feedback](#feedback)
+    - [Reporting Issues](#reporting-issues)
+    - [Providing Suggestions](#providing-suggestions)
+    - [Contact](#contact)
 
 ## Key Features:
 *  **Product Management**: CRUD operations for adding, updating, deleting, and viewing product details.
@@ -24,50 +28,6 @@ A personal portfolio project built to showcase my skills in developing a compreh
 * **Data Visualization**: Chart.js (for displaying stock and transaction data visually).
 * **Database**: MySQL (storing product data, transactions, and inventory levels).
 
-# bukan
-## API Documentation
-A detailed API documentation, including example requests and responses, can be found in the following link:  
-[API Documentation Link](https://documenter.getpostman.com/view/12326491/2sAXjM3ra9)
-
-You can visit this link to view the full documentation and test the API using Postman.
-
-### Available Endpoints
-
-1.  **Auth:**
-    -   `POST /api/login` – Authenticate user and generate token.
-	   -   `POST /api/register` – Register a new user.
-	   - `POST /api/logout` – Logout the user
-3.  **User Management:**
-    
-    -   `GET /api/users` – Retrieve list of all users.
-    -   `GET /api/users/{id}` – Retrieve details of a specific user.
-    -   `PUT /api/users/{id}` – Update a user’s details.
-    -   `DELETE /api/users/{id}` – Delete a user.
-4.  **Products Management:**
-    
-    -   `GET /api/products` – Retrieve list of all items.
-    -   `POST /api/products` – Create a new item.
-    -   `GET /api/products/{id}` – Retrieve details of a specific item.
-    -   `PUT /api/products/{id}` – Update an item’s details.
-    -   `DELETE /api/products/{id}` – Delete an item.
-5.  **Mutation Management:**
-    
-    -   `GET /api/mutations` – Retrieve all mutations.
-    -   `POST /api/mutations` – Create a new mutation.
-    -   `GET /api/mutations/{id}` – Retrieve details of a specific mutation.
-     -   `PUT /api/mutations/{id}` – Update an mutation details.
-     -    `DELETE /api/mutations/{id}` – Delete an mutations .
-    -   `GET /api/items/{id}/mutations` – Get mutation history for a specific item.
-    -   `GET /api/users/{id}/mutations` – Get mutation history for a specific user.
-
-## Deployment
-
-The project is currently deployed and available online. You can access the live application at :
-
-```bash
-https://api.id-grow.msyaifullahalarief.my.id
-```
-
 ### Running Locally
 
 To run this project locally on your machine, follow these steps:
@@ -77,7 +37,7 @@ To run this project locally on your machine, follow these steps:
 Start by cloning the repository to your local machine:
 
 ```bash
-git clone https://github.com/arief2020/Warehouse-ID-Grow.git
+git clone https://github.com/arief2020/laravel-vilt.git
 ```
 
  **2. Navigate into the Project Directory**
@@ -85,7 +45,7 @@ git clone https://github.com/arief2020/Warehouse-ID-Grow.git
 Move into the project directory:
 
 ```bash
-cd Warehouse-ID-Grow
+cd .\laravel-vilt\
 ```
 
 **3. Copy .env**
@@ -103,7 +63,16 @@ Install the project dependencies using Composer:
 composer install
 ```
 
-**5. Setting database**
+
+**5.  Install Package NPM**
+
+Install the project dependencies using Composer:
+
+```bash
+npm install
+```
+
+**6. Setting database**
 
 Open the `.env` file and update the database configuration:
 ```env
@@ -111,23 +80,29 @@ Open the `.env` file and update the database configuration:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=dbidgrowdev
+DB_DATABASE=dbinvetorymanagement
 DB_USERNAME=root
 DB_PASSWORD=
 ...
 ```
-**6. Generate API Key**
+**7. Generate API Key**
 
 Generate api key
 ```bash
 php artisan key:generate
 ```
-**7. Run Migration**
+**8. Run Migration and Seeder**
 
 Run the database migrations:
 ```bash
 php artisan migrate
 ```
+
+Run the database seeder:
+```bash
+php artisan db:seed
+```
+
 **8. Run App**
 
 Start the Laravel development server:
@@ -135,79 +110,33 @@ Start the Laravel development server:
 php artisan serve
 ```
 
-### Running with Docker
-
-To run this project with docker, follow these steps:
-
- **1. Clone the Repository**
-
-Start by cloning the repository to your local machine:
-
+Start the Vue Inertia:
 ```bash
-git clone https://github.com/arief2020/Warehouse-ID-Grow.git
+npm run dev
 ```
 
- **2. Navigate into the Project Directory**
+## Feedback
 
-Move into the project directory:
+I welcome and appreciate your feedback on this project. Your input is valuable and helps me improve and refine the application. Here’s how you can provide feedback or get in touch:
 
-```bash
-cd Warehouse-ID-Grow
-```
+### Reporting Issues
 
-**3. Copy .env**
+If you find any bugs or issues with the project, please report them by opening a new issue on my [GitHub Issues page](https://github.com/your-username/your-repository/issues). When reporting issues, include:
 
-Install the project dependencies using npm :
+-   A clear and descriptive title
+-   A detailed description of the problem
+-   Steps to reproduce the issue
+-   Any relevant screenshots or error messages
 
-```bash
-cp .env.example .env
-```
-**4.  Run Composer**
+### Providing Suggestions
 
-Install the project dependencies using Composer:
+If you have suggestions for new features or improvements, please feel free to share them. You can submit your suggestions by creating a new issue on my [GitHub Issues page](https://github.com/arief2020/laravel-vilt/issues) with the label `enhancement`. Be sure to provide a clear explanation of your idea and how it could enhance the project.
 
-```bash
-composer install
-```
+### Contact
 
-**5. Setting database**
+For any direct feedback, questions, or general inquiries, you can reach me at:
 
-Edit the `.env` file for Docker's database connection (ensure the `DB_HOST` matches the service name in your `docker-compose.yml`):
-```env
-...
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=laravel
-DB_USERNAME=laraveluser
-DB_PASSWORD=password
-...
-```
-**6. Generate API Key**
 
-Generate the application key:
-```bash
-php artisan key:generate
-```
-**7. Run App with Docker**
+-   **LinkedIn:** [My Linkedin Profile](https://www.linkedin.com/in/muhammad-syaifullah-al-arief/)
 
-Build and start the app using Docker Compose:
-```bash
-docker-compose up -d --build
-```
-**8. Run Migration**
-Open an interactive shell in the Laravel container:
-```bash
-docker exec -it laravel_id_grow sh
-```
-Run the migrations:
-```bash
-php artisan migrate
-```
-
-## Tech Stack
-
-**Server:** Laravel
-
-**Database:** MySQL
-
+Thank you for your interest in my project and for taking the time to provide feedback!
