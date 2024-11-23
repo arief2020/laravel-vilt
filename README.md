@@ -24,7 +24,7 @@ A personal portfolio project built to showcase my skills in developing a compreh
 ## Tech Stack:
 * **Frontend**: Vue.js (with Inertia.js for smooth navigation and SPA-like experience).
 * **Backend**: Laravel (RESTful API for product and transaction management, PDF generation).
-* **Styling**: Tailwind CSS (clean, responsive design).
+* **Styling**: Tailwind CSS.
 * **Data Visualization**: Chart.js (for displaying stock and transaction data visually).
 * **Database**: MySQL (storing product data, transactions, and inventory levels).
 
